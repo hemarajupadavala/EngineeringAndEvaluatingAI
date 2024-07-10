@@ -9,6 +9,10 @@ read= pd.read_csv("Purchasing.csv")
 read.info()
 print("___________________")
 
+
+
+
+print("Main Chained Outputs")
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -54,13 +58,6 @@ class LengthExtractor(BaseEstimator, TransformerMixin):
         return np.array([len(text.split()) for text in X]).reshape(-1, 1)
 
 class ImprovedChainedMultiOutputClassifier:
-    """
-
-    Attributes:
-      label_encoders:
-      classifier:
-      preprocessor:
-    """
     def __init__(self):
         self.label_encoders = {}
         self.classifier = RandomForestClassifier(n_estimators=200, random_state=42, class_weight='balanced')
