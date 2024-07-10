@@ -180,3 +180,426 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
+'''
+
+Output
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 122 entries, 0 to 121
+Data columns (total 11 columns):
+ #   Column                  Non-Null Count  Dtype
+---  ------                  --------------  -----
+ 0   Ticket id               122 non-null    int64
+ 1   Interaction id          122 non-null    int64
+ 2   Interaction date        96 non-null     float64
+ 3   Mailbox                 122 non-null    object
+ 4   Ticket Summary          121 non-null    object
+ 5   Interaction content     120 non-null    object
+ 6   Innso TYPOLOGY_TICKET   122 non-null    object
+ 7   Type 1                  122 non-null    object
+ 8   Type 2                  122 non-null    object
+ 9   Type 3                  89 non-null     object
+ 10  Type 4                  87 non-null     object
+dtypes: float64(1), int64(2), object(8)
+memory usage: 10.6+ KB
+---------------------
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 84 entries, 0 to 83
+Data columns (total 11 columns):
+ #   Column                  Non-Null Count  Dtype
+---  ------                  --------------  -----
+ 0   Ticket id               84 non-null     int64
+ 1   Interaction id          84 non-null     int64
+ 2   Interaction date        73 non-null     float64
+ 3   Mailbox                 84 non-null     object
+ 4   Ticket Summary          76 non-null     object
+ 5   Interaction content     84 non-null     object
+ 6   Innso TYPOLOGY_TICKET   84 non-null     object
+ 7   Type 1                  84 non-null     object
+ 8   Type 2                  84 non-null     object
+ 9   Type 3                  82 non-null     object
+ 10  Type 4                  76 non-null     object
+dtypes: float64(1), int64(2), object(8)
+memory usage: 7.3+ KB
+___________________
+Main Chained Outputs
+Email Instance 1:
+• True Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Correct
+  • Type 2 + Type 3: Correct
+  • Type 2 + Type 3 + Type 4: Correct
+• Final Accuracy for Instance 1: 100%
+--------------------------------------------------
+Email Instance 2:
+• True Labels: Type2: Suggestion, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Incorrect
+  • Type 2 + Type 3: Not evaluated (previous prediction was incorrect)
+  • Type 2 + Type 3 + Type 4: Not evaluated (previous prediction was incorrect)
+• Final Accuracy for Instance 2: 0%
+--------------------------------------------------
+Email Instance 3:
+• True Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Correct
+  • Type 2 + Type 3: Correct
+  • Type 2 + Type 3 + Type 4: Correct
+• Final Accuracy for Instance 3: 100%
+--------------------------------------------------
+Email Instance 4:
+• True Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Correct
+  • Type 2 + Type 3: Correct
+  • Type 2 + Type 3 + Type 4: Correct
+• Final Accuracy for Instance 4: 100%
+--------------------------------------------------
+Email Instance 5:
+• True Labels: Type2: Suggestion, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Suggestion, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Correct
+  • Type 2 + Type 3: Correct
+  • Type 2 + Type 3 + Type 4: Correct
+• Final Accuracy for Instance 5: 100%
+--------------------------------------------------
+Email Instance 6:
+• True Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Correct
+  • Type 2 + Type 3: Correct
+  • Type 2 + Type 3 + Type 4: Correct
+• Final Accuracy for Instance 6: 100%
+--------------------------------------------------
+Email Instance 7:
+• True Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Correct
+  • Type 2 + Type 3: Correct
+  • Type 2 + Type 3 + Type 4: Correct
+• Final Accuracy for Instance 7: 100%
+--------------------------------------------------
+Email Instance 8:
+• True Labels: Type2: Others, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Others, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Correct
+  • Type 2 + Type 3: Correct
+  • Type 2 + Type 3 + Type 4: Correct
+• Final Accuracy for Instance 8: 100%
+--------------------------------------------------
+Email Instance 9:
+• True Labels: Type2: Others, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Others, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Correct
+  • Type 2 + Type 3: Correct
+  • Type 2 + Type 3 + Type 4: Correct
+• Final Accuracy for Instance 9: 100%
+--------------------------------------------------
+Email Instance 10:
+• True Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Correct
+  • Type 2 + Type 3: Correct
+  • Type 2 + Type 3 + Type 4: Correct
+• Final Accuracy for Instance 10: 100%
+--------------------------------------------------
+Email Instance 11:
+• True Labels: Type2: Others, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Others, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Correct
+  • Type 2 + Type 3: Correct
+  • Type 2 + Type 3 + Type 4: Correct
+• Final Accuracy for Instance 11: 100%
+--------------------------------------------------
+Email Instance 12:
+• True Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Correct
+  • Type 2 + Type 3: Incorrect
+  • Type 2 + Type 3 + Type 4: Not evaluated (previous prediction was incorrect)
+• Final Accuracy for Instance 12: 33%
+--------------------------------------------------
+Email Instance 13:
+• True Labels: Type2: Suggestion, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Suggestion, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Correct
+  • Type 2 + Type 3: Correct
+  • Type 2 + Type 3 + Type 4: Correct
+• Final Accuracy for Instance 13: 100%
+--------------------------------------------------
+Email Instance 14:
+• True Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Correct
+  • Type 2 + Type 3: Correct
+  • Type 2 + Type 3 + Type 4: Correct
+• Final Accuracy for Instance 14: 100%
+--------------------------------------------------
+Email Instance 15:
+• True Labels: Type2: Suggestion, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Suggestion, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Correct
+  • Type 2 + Type 3: Correct
+  • Type 2 + Type 3 + Type 4: Correct
+• Final Accuracy for Instance 15: 100%
+--------------------------------------------------
+Email Instance 16:
+• True Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Suggestion, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Incorrect
+  • Type 2 + Type 3: Not evaluated (previous prediction was incorrect)
+  • Type 2 + Type 3 + Type 4: Not evaluated (previous prediction was incorrect)
+• Final Accuracy for Instance 16: 0%
+--------------------------------------------------
+Email Instance 17:
+• True Labels: Type2: Suggestion, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Suggestion, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Correct
+  • Type 2 + Type 3: Incorrect
+  • Type 2 + Type 3 + Type 4: Not evaluated (previous prediction was incorrect)
+• Final Accuracy for Instance 17: 33%
+--------------------------------------------------
+Email Instance 18:
+• True Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Correct
+  • Type 2 + Type 3: Correct
+  • Type 2 + Type 3 + Type 4: Correct
+• Final Accuracy for Instance 18: 100%
+--------------------------------------------------
+Email Instance 19:
+• True Labels: Type2: Others, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Incorrect
+  • Type 2 + Type 3: Not evaluated (previous prediction was incorrect)
+  • Type 2 + Type 3 + Type 4: Not evaluated (previous prediction was incorrect)
+• Final Accuracy for Instance 19: 0%
+--------------------------------------------------
+Email Instance 20:
+• True Labels: Type2: Suggestion, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Incorrect
+  • Type 2 + Type 3: Not evaluated (previous prediction was incorrect)
+  • Type 2 + Type 3 + Type 4: Not evaluated (previous prediction was incorrect)
+• Final Accuracy for Instance 20: 0%
+--------------------------------------------------
+Email Instance 21:
+• True Labels: Type2: Suggestion, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Suggestion, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Correct
+  • Type 2 + Type 3: Correct
+  • Type 2 + Type 3 + Type 4: Correct
+• Final Accuracy for Instance 21: 100%
+--------------------------------------------------
+Email Instance 22:
+• True Labels: Type2: Others, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Others, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Correct
+  • Type 2 + Type 3: Correct
+  • Type 2 + Type 3 + Type 4: Correct
+• Final Accuracy for Instance 22: 100%
+--------------------------------------------------
+Email Instance 23:
+• True Labels: Type2: Others, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Others, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Correct
+  • Type 2 + Type 3: Correct
+  • Type 2 + Type 3 + Type 4: Correct
+• Final Accuracy for Instance 23: 100%
+--------------------------------------------------
+Email Instance 24:
+• True Labels: Type2: Suggestion, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Suggestion, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Correct
+  • Type 2 + Type 3: Correct
+  • Type 2 + Type 3 + Type 4: Correct
+• Final Accuracy for Instance 24: 100%
+--------------------------------------------------
+Email Instance 25:
+• True Labels: Type2: Suggestion, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Suggestion, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Correct
+  • Type 2 + Type 3: Correct
+  • Type 2 + Type 3 + Type 4: Correct
+• Final Accuracy for Instance 25: 100%
+--------------------------------------------------
+Email Instance 26:
+• True Labels: Type2: Suggestion, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Suggestion, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Correct
+  • Type 2 + Type 3: Incorrect
+  • Type 2 + Type 3 + Type 4: Not evaluated (previous prediction was incorrect)
+• Final Accuracy for Instance 26: 33%
+--------------------------------------------------
+Email Instance 27:
+• True Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Correct
+  • Type 2 + Type 3: Correct
+  • Type 2 + Type 3 + Type 4: Correct
+• Final Accuracy for Instance 27: 100%
+--------------------------------------------------
+Email Instance 28:
+• True Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Correct
+  • Type 2 + Type 3: Correct
+  • Type 2 + Type 3 + Type 4: Correct
+• Final Accuracy for Instance 28: 100%
+--------------------------------------------------
+Email Instance 29:
+• True Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Correct
+  • Type 2 + Type 3: Correct
+  • Type 2 + Type 3 + Type 4: Correct
+• Final Accuracy for Instance 29: 100%
+--------------------------------------------------
+Email Instance 30:
+• True Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Correct
+  • Type 2 + Type 3: Correct
+  • Type 2 + Type 3 + Type 4: Incorrect
+• Final Accuracy for Instance 30: 67%
+--------------------------------------------------
+Email Instance 31:
+• True Labels: Type2: Suggestion, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Suggestion, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Correct
+  • Type 2 + Type 3: Correct
+  • Type 2 + Type 3 + Type 4: Correct
+• Final Accuracy for Instance 31: 100%
+--------------------------------------------------
+Email Instance 32:
+• True Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Correct
+  • Type 2 + Type 3: Correct
+  • Type 2 + Type 3 + Type 4: Correct
+• Final Accuracy for Instance 32: 100%
+--------------------------------------------------
+Email Instance 33:
+• True Labels: Type2: Suggestion, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Others, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Incorrect
+  • Type 2 + Type 3: Not evaluated (previous prediction was incorrect)
+  • Type 2 + Type 3 + Type 4: Not evaluated (previous prediction was incorrect)
+• Final Accuracy for Instance 33: 0%
+--------------------------------------------------
+Email Instance 34:
+• True Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Correct
+  • Type 2 + Type 3: Correct
+  • Type 2 + Type 3 + Type 4: Correct
+• Final Accuracy for Instance 34: 100%
+--------------------------------------------------
+Email Instance 35:
+• True Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Correct
+  • Type 2 + Type 3: Correct
+  • Type 2 + Type 3 + Type 4: Correct
+• Final Accuracy for Instance 35: 100%
+--------------------------------------------------
+Email Instance 36:
+• True Labels: Type2: Suggestion, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Suggestion, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Correct
+  • Type 2 + Type 3: Correct
+  • Type 2 + Type 3 + Type 4: Correct
+• Final Accuracy for Instance 36: 100%
+--------------------------------------------------
+Email Instance 37:
+• True Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Correct
+  • Type 2 + Type 3: Correct
+  • Type 2 + Type 3 + Type 4: Incorrect
+• Final Accuracy for Instance 37: 67%
+--------------------------------------------------
+Email Instance 38:
+• True Labels: Type2: Suggestion, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Suggestion, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Correct
+  • Type 2 + Type 3: Correct
+  • Type 2 + Type 3 + Type 4: Correct
+• Final Accuracy for Instance 38: 100%
+--------------------------------------------------
+Email Instance 39:
+• True Labels: Type2: Suggestion, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Suggestion, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Correct
+  • Type 2 + Type 3: Correct
+  • Type 2 + Type 3 + Type 4: Correct
+• Final Accuracy for Instance 39: 100%
+--------------------------------------------------
+Email Instance 40:
+• True Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Correct
+  • Type 2 + Type 3: Correct
+  • Type 2 + Type 3 + Type 4: Correct
+• Final Accuracy for Instance 40: 100%
+--------------------------------------------------
+Email Instance 41:
+• True Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Problem/Fault, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Correct
+  • Type 2 + Type 3: Correct
+  • Type 2 + Type 3 + Type 4: Correct
+• Final Accuracy for Instance 41: 100%
+--------------------------------------------------
+Email Instance 42:
+• True Labels: Type2: Suggestion, Type3: Unknown, Type4: Unknown
+• Predicted Labels: Type2: Suggestion, Type3: Unknown, Type4: Unknown
+• Evaluation:
+  • Type 2: Correct
+  • Type 2 + Type 3: Correct
+  • Type 2 + Type 3 + Type 4: Correct
+• Final Accuracy for Instance 42: 100%
+--------------------------------------------------
+Total Accuracy: 0.8175
+'''
