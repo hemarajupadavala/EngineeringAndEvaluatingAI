@@ -38,4 +38,31 @@ class HierarchicalMultiOutputClassifier:
         self.label_encoders = {}
         self.models = {'Type 2': None, 'Type 3': {}, 'Type 4': {}}
         self.text_preprocessor = TextPreprocessor()
-        
+def preprocess_data(classifier, df):
+    df['combined_text'] = df['Ticket Summary'].fillna('') + ' ' + df['Interaction content'].fillna('')
+    df['combined_text'] = classifier.text_preprocessor.transform(df['combined_text'])
+
+    # Add new features
+    df['text_length'] = df['combined_text'].apply(len)
+    df['word_count'] = df['combined_text'].apply(lambda x: len(x.split()))
+    df['sentiment'] = df['combined_text'].apply(lambda x: TextBlob(x).sentiment.polarity)
+
+    for col in ['Type 2', 'Type 3', 'Type 4']:
+        classifier.label_encoders[col] = LabelEncoder()
+        df[col] = classifier.label_encoders[col].fit_transform(df[col].fillna('Unknown'))
+
+    return df
+
+def prepare_data(classifier, df):
+    X_text = classifier.vectorizer.fit_transform(df['combined_text'])
+    X_features = df[['text_length', 'word_count', 'sentiment']].values
+    X = np.hstack((X_text.toarray(), X_features))
+    return X, df[['Type 2', 'Type 3', 'Type 4']]
+
+def safe_smote(X, y):
+    if len(np.unique(y)) > 1:
+        try:
+            return SMOTE(random_state=42).fit_resample(X, y)
+        except ValueError:
+            print(f"SMOTE failed. Using original data. Unique classes: {np.unique(y)}")
+    return X, y
