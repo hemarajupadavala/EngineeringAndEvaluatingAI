@@ -99,3 +99,20 @@ def train(classifier, X, y):
 
             classifier.models['Type 4'][(class_2, class_3)] = xgb.XGBClassifier(random_state=42)
             classifier.models['Type 4'][(class_2, class_3)].fit(X_filtered, y_filtered)
+def predict(classifier, X):
+    index = range(X.shape[0])
+    predictions = pd.DataFrame(index=index, columns=['Type 2', 'Type 3', 'Type 4'])
+
+    predictions['Type 2'] = classifier.models['Type 2'].predict(X)
+
+    for i in range(X.shape[0]):
+        class_2 = predictions.iloc[i]['Type 2']
+        if class_2 in classifier.models['Type 3']:
+            pred_3 = classifier.models['Type 3'][class_2].predict(X[i:i+1])[0]
+            predictions.iloc[i, predictions.columns.get_loc('Type 3')] = pred_3
+
+            if (class_2, pred_3) in classifier.models['Type 4']:
+                pred_4 = classifier.models['Type 4'][(class_2, pred_3)].predict(X[i:i+1])[0]
+                predictions.iloc[i, predictions.columns.get_loc('Type 4')] = pred_4
+
+    return predictions
