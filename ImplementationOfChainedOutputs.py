@@ -157,7 +157,7 @@ def load_and_combine_data(file_paths):
 
 def main():
     # Load and combine data
-    file_paths = ['/content/Purchasing.csv', '/content/AppGallery.csv']
+    file_paths = ['Purchasing.csv', 'AppGallery.csv']#FIle paths
     df = load_and_combine_data(file_paths)
 
     # Initialize and use the classifier
