@@ -66,3 +66,36 @@ def safe_smote(X, y):
         except ValueError:
             print(f"SMOTE failed. Using original data. Unique classes: {np.unique(y)}")
     return X, y
+def train(classifier, X, y):
+    # Train Type 2 model
+    param_grid = {
+        'n_estimators': [100, 200],
+        'max_depth': [10, 20, None],
+        'min_samples_split': [2, 5, 10],
+        'min_samples_leaf': [1, 2, 4]
+    }
+
+    classifier.models['Type 2'] = GridSearchCV(RandomForestClassifier(random_state=42), param_grid, cv=5, n_jobs=-1)
+    classifier.models['Type 2'].fit(X, y['Type 2'])
+
+    # Train Type 3 models
+    for class_2 in np.unique(y['Type 2']):
+        mask = y['Type 2'] == class_2
+        X_filtered, y_filtered = safe_smote(X[mask], y.loc[mask, 'Type 3'])
+
+        # Ensure y_filtered has consecutive integer labels starting from 0
+        y_filtered = pd.factorize(y_filtered)[0]
+
+        classifier.models['Type 3'][class_2] = xgb.XGBClassifier(random_state=42)
+        classifier.models['Type 3'][class_2].fit(X_filtered, y_filtered)
+
+        # Train Type 4 models
+        for class_3 in np.unique(y_filtered):
+            mask = (y['Type 2'] == class_2) & (y['Type 3'] == class_3)
+            X_filtered, y_filtered = safe_smote(X[mask], y.loc[mask, 'Type 4'])
+
+            # Ensure y_filtered has consecutive integer labels starting from 0
+            y_filtered = pd.factorize(y_filtered)[0]
+
+            classifier.models['Type 4'][(class_2, class_3)] = xgb.XGBClassifier(random_state=42)
+            classifier.models['Type 4'][(class_2, class_3)].fit(X_filtered, y_filtered)
