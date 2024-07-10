@@ -116,3 +116,107 @@ def predict(classifier, X):
                 predictions.iloc[i, predictions.columns.get_loc('Type 4')] = pred_4
 
     return predictions
+def hierarchical_accuracy(y_true, y_pred):
+    correct = 0
+    total = len(y_true)
+    for i in range(total):
+        if y_true.iloc[i]['Type 2'] == y_pred.iloc[i]['Type 2']:
+            if y_true.iloc[i]['Type 3'] == y_pred.iloc[i]['Type 3']:
+                if y_true.iloc[i]['Type 4'] == y_pred.iloc[i]['Type 4']:
+                    correct += 1
+                else:
+                    correct += 2/3
+            else:
+                correct += 1/3
+    return correct / total
+
+def custom_classification_report(y_true, y_pred, labels, target_names):
+    precision, recall, f1, support = precision_recall_fscore_support(y_true, y_pred, labels=labels, zero_division=0)
+
+    report = "              precision    recall  f1-score   support\n\n"
+    for i, label in enumerate(labels):
+        report += f"{target_names[i]:>15} {precision[i]:>9.2f} {recall[i]:>8.2f} {f1[i]:>8.2f} {support[i]:>8d}\n"
+
+    report += "\n"
+    accuracy = accuracy_score(y_true, y_pred)
+    report += f"    accuracy                         {accuracy:>8.2f} {np.sum(support):>8d}\n"
+
+    avg_precision = np.average(precision, weights=support)
+    avg_recall = np.average(recall, weights=support)
+    avg_f1 = np.average(f1, weights=support)
+    report += f"   macro avg {avg_precision:>9.2f} {avg_recall:>8.2f} {avg_f1:>8.2f} {np.sum(support):>8d}\n"
+
+    weighted_precision = np.average(precision, weights=support)
+    weighted_recall = np.average(recall, weights=support)
+    weighted_f1 = np.average(f1, weights=support)
+    report += f"weighted avg {weighted_precision:>9.2f} {weighted_recall:>8.2f} {weighted_f1:>8.2f} {np.sum(support):>8d}\n"
+
+    return report
+
+def evaluate(classifier, y_true, y_pred):
+    # Ensure y_true and y_pred have the same index
+    common_index = y_true.index.intersection(y_pred.index)
+    y_true = y_true.loc[common_index]
+    y_pred = y_pred.loc[common_index]
+
+    print(f"Hierarchical Accuracy: {hierarchical_accuracy(y_true, y_pred):.4f}")
+
+    for col in ['Type 2', 'Type 3', 'Type 4']:
+        print(f"\nEvaluating {col}")
+        y_true_filtered = y_true[col]
+        y_pred_filtered = y_pred[col]
+
+        print(f"Number of predictions: {len(y_true_filtered)}")
+
+        true_labels = set(y_true_filtered)
+        pred_labels = set(y_pred_filtered)
+        all_labels = sorted(true_labels.union(pred_labels))
+
+        print(f"Unique values in y_true: {true_labels}")
+        print(f"Unique values in y_pred: {pred_labels}")
+        print(f"All unique labels: {all_labels}")
+
+        try:
+            acc = accuracy_score(y_true_filtered, y_pred_filtered)
+            print(f"Accuracy for {col}: {acc:.4f}")
+
+            target_names = [classifier.label_encoders[col].classes_[label] if label < len(classifier.label_encoders[col].classes_) else f'Unknown_{label}'
+                            for label in all_labels]
+
+            report = custom_classification_report(y_true_filtered, y_pred_filtered,
+                                                  labels=all_labels,
+                                                  target_names=target_names)
+            print(report)
+        except Exception as e:
+            print(f"Error in evaluation for {col}: {str(e)}")
+        print("-" * 50)
+
+def load_and_combine_data(file_paths):
+    return pd.concat([pd.read_csv(file_path) for file_path in file_paths], ignore_index=True)
+def main():
+    file_paths = ['Purchasing.csv', 'AppGallery.csv']
+    df = load_and_combine_data(file_paths)
+
+    print("Data shape:", df.shape)
+    print("Column names:", df.columns)
+    print("Type 2 value counts:", df['Type 2'].value_counts())
+    print("Type 3 value counts:", df['Type 3'].value_counts())
+    print("Type 4 value counts:", df['Type 4'].value_counts())
+
+    classifier = HierarchicalMultiOutputClassifier()
+    df_processed = preprocess_data(classifier, df)
+    X, y = prepare_data(classifier, df_processed)
+
+    print("Processed data shape:", X.shape)
+    print("Target data shape:", y.shape)
+
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    print("Training data shape:", X_train.shape)
+    print("Test data shape:", X_test.shape)
+
+    train(classifier, X_train, y_train)
+    y_pred = predict(classifier, X_test)
+    evaluate(classifier, y_test, y_pred)
+if __name__ == "__main__":
+    main()
