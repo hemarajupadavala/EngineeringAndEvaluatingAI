@@ -13,6 +13,8 @@ print("___________________")
 
 
 print("Main Chained Outputs")
+
+#Importing Libraries
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -32,6 +34,8 @@ nltk.download('punkt', quiet=True)
 nltk.download('stopwords', quiet=True)
 nltk.download('wordnet', quiet=True)
 
+
+# Pre Proessing the Textual Data
 class TextPreprocessor(BaseEstimator, TransformerMixin):
     def __init__(self):
         self.lemmatizer = WordNetLemmatizer()
