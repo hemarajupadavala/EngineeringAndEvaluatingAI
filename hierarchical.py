@@ -220,3 +220,40 @@ def main():
     evaluate(classifier, y_test, y_pred)
 if __name__ == "__main__":
     main()
+    
+'''
+Hierarchical Accuracy: 0.2222
+
+Evaluating Type 2
+Number of predictions: 6
+Unique values in y_true: {1, 2}
+Unique values in y_pred: {1, 2}
+All unique labels: [1, 2]
+Accuracy for Type 2: 0.6667
+              precision    recall  f1-score   support
+
+  Problem/Fault      0.33     1.00     0.50        1
+     Suggestion      1.00     0.60     0.75        5
+
+    accuracy                             0.67        6
+   macro avg      0.89     0.67     0.71        6
+weighted avg      0.89     0.67     0.71        6
+
+--------------------------------------------------
+
+Evaluating Type 3
+Number of predictions: 6
+Unique values in y_true: {8, 4, 5, 7}
+Unique values in y_pred: {0, 3, 4}
+All unique labels: [0, 3, 4, 5, 7, 8]
+Error in evaluation for Type 3: Classification metrics can't handle a mix of multiclass and unknown targets
+--------------------------------------------------
+
+Evaluating Type 4
+Number of predictions: 6
+Unique values in y_true: {19, 17, 11, 7}
+Unique values in y_pred: {0}
+All unique labels: [0, 7, 11, 17, 19]
+Error in evaluation for Type 4: Classification metrics can't handle a mix of multiclass and unknown targets
+--------------------------------------------------
+'''
